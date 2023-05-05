@@ -52,7 +52,7 @@ public class LoginPage {
 		}
 		catch (Exception e) 
 		{
-			Reporter.log("Err Msg isN Not Displayed",true);
+			Reporter.log("Err Msg is Not Displayed",true);
 			return false;
 		}
 	}
