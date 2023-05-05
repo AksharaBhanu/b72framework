@@ -16,6 +16,7 @@ public class ValidLogin extends BaseTest
 		String un=Excel.getData(XL_PATH, "ValidLogin", 1, 0);
 		String pw=Excel.getData(XL_PATH, "ValidLogin", 1, 1);
 		
+		
 		LoginPage loginPage=new LoginPage(driver);
 //		1. enter valid un
 		loginPage.setUserName(un);
