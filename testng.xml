@@ -1,7 +1,7 @@
 <suite name="Suite">
   <test thread-count="5" name="Test">
   <parameter name="appurl" value="https://demo.actitime.com"/>
-  <parameter name="grid" value="http://192.168.29.187:4444"/>
+  <parameter name="grid" value="http://localhost:4444"/>
   <parameter name="browser" value="chrome"/>
     <packages>
       <package name="script"/>
