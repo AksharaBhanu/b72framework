@@ -20,6 +20,11 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>3.0.0</version>
         <configuration>
+          <systemPropertyVariables>
+           	<appurl>https://demo.actitime.com/login.do</appurl>
+           	<grid>no</grid>
+           	<browser>chrome</browser>
+          </systemPropertyVariables>
           <suiteXmlFiles>
             <suiteXmlFile>testng.xml</suiteXmlFile>
           </suiteXmlFiles>
@@ -28,6 +33,11 @@
    </plugins>
   </build>
   <dependencies>
+  	  <dependency>
+	    <groupId>com.aventstack</groupId>
+	    <artifactId>extentreports</artifactId>
+	    <version>LATEST</version>
+	</dependency>
   	<dependency>
   		<groupId>org.seleniumhq.selenium</groupId>
   		<artifactId>selenium-java</artifactId>
@@ -48,5 +58,15 @@
     	<artifactId>poi-ooxml</artifactId>
     	<version>5.2.3</version>
 	</dependency>
+		<dependency>
+    	<groupId>ru.yandex.qatools.ashot</groupId>
+    	<artifactId>ashot</artifactId>
+    	<version>1.5.4</version>
+	</dependency>
+	<dependency>
+    <groupId>org.projectlombok</groupId>
+    <artifactId>lombok</artifactId>
+    <version>1.18.20</version>
+</dependency>
   </dependencies>
 </project>

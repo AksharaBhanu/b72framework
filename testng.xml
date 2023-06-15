@@ -1,8 +1,8 @@
 <suite name="Suite">
   <test thread-count="5" name="Test">
-  <parameter name="appurl" value="https://demo.actitime.com"/>
-  <parameter name="grid" value="http://192.168.29.187:4444"/>
-  <parameter name="browser" value="chrome"/>
+  <parameter name="appurl" value="${appurl}"/>
+  <parameter name="grid" value="${grid}"/>
+  <parameter name="browser" value="${browser}"/>
     <packages>
       <package name="script"/>
     </packages>
