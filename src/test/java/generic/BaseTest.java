@@ -45,7 +45,7 @@ public class BaseTest {
 	public void intReport()
 	{
 		report=new ExtentReports();	
-		ExtentSparkReporter spark = new ExtentSparkReporter("target/Spark.html");
+		ExtentSparkReporter spark = new ExtentSparkReporter("report/Spark.html");
 		report.attachReporter(spark);
 	}
 	
