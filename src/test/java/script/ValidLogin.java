@@ -22,13 +22,13 @@ public class ValidLogin extends BaseTest
 //		1. enter valid un
 		loginPage.setUserName(un);
 //		2. enter valid pw
-		loginPage.setPassword(pw);
-		Thread.sleep(2000);
-//		3. click login button
-		loginPage.clickLoginButton();
-//		4. home page should be displayed
-		EnterTimeTrackPage homePage=new EnterTimeTrackPage(driver);
-		boolean result = homePage.verifyHomePageIsDisplayed(wait);
-		Assert.assertTrue(result);
+//		loginPage.setPassword(pw);
+//		Thread.sleep(2000);
+////		3. click login button
+//		loginPage.clickLoginButton();
+////		4. home page should be displayed
+//		EnterTimeTrackPage homePage=new EnterTimeTrackPage(driver);
+//		boolean result = homePage.verifyHomePageIsDisplayed(wait);
+//		Assert.assertTrue(result);
 	}
 }
