@@ -32,8 +32,9 @@ import org.openqa.selenium.support.events.EventFiringDecorator;
 public class BaseTest {
 	public static final String DEFAULT_URL="https://demo.actitime.com";
 	public static final String DEFAULT_GRID="no";
-	public static final String DEFAULT_BROWSER="chrome";
-	public static final String XL_PATH="./data/input.xlsx";
+	public static final String DEFAULT_PPTFILE="qa.properties";
+	public static final String DEFAULT_HTMLPATH="report/Spark.html";
+	public static String XL_PATH;
 	public static ExtentReports report;
 	public ExtentTest extentTest;
 	
@@ -41,11 +42,12 @@ public class BaseTest {
 	public WebDriver driver;
 	public WebDriverWait wait;
 
+	@Parameters({"htmlpath"})
 	@BeforeSuite
-	public void intReport()
+	public void intReport(@Optional(DEFAULT_HTMLPATH)  String htmlPath)
 	{
 		report=new ExtentReports();	
-		ExtentSparkReporter spark = new ExtentSparkReporter("report/Spark.html");
+		ExtentSparkReporter spark = new ExtentSparkReporter(htmlPath);
 		report.attachReporter(spark);
 	}
 	
@@ -55,11 +57,26 @@ public class BaseTest {
 		report.flush();
 	}
 	
-	@Parameters({"appurl","grid","browser"})
+	@Parameters({"appurl","grid","pptfile"})
 	@BeforeMethod
-	public void preCondition(@Optional(DEFAULT_URL) String appURL,@Optional(DEFAULT_GRID) String grid,@Optional(DEFAULT_BROWSER) String browser,Method method) throws Exception {
+	public void preCondition(@Optional(DEFAULT_URL) String appURL,@Optional(DEFAULT_GRID) String grid,@Optional(DEFAULT_PPTFILE) String pptFile,Method method) throws Exception {
 		String testName=method.getName();
 		extentTest = report.createTest(testName);
+		
+		String browser=Util.getProperty(pptFile, "browser");
+		extentTest.info("Browser is:"+browser);
+		
+		String sITO=Util.getProperty(pptFile, "ITO");
+		long lITO=Long.parseLong(sITO);
+		extentTest.info("ITO is:"+sITO);
+		
+		String sETO=Util.getProperty(pptFile, "ETO");
+		long lETO=Long.parseLong(sETO);
+		extentTest.info("ETO is:"+sETO);
+		
+		XL_PATH=Util.getProperty(pptFile, "XLPATH");
+		extentTest.info("XL PATH is:"+XL_PATH);
+
 		if(grid.equalsIgnoreCase("no"))
 		{
 			extentTest.info("Execution in local system");
@@ -93,10 +110,10 @@ public class BaseTest {
 		original_driver.get(appURL);
 		extentTest.info("maximize the browser");
 		original_driver.manage().window().maximize();
-		extentTest.info("Set ITO to 5Sec");
-		original_driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-		extentTest.info("Set ETO to 5Sec");
-		wait=new WebDriverWait(original_driver, Duration.ofSeconds(5));
+		extentTest.info("Set ITO to :"+lITO);
+		original_driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(lITO));
+		extentTest.info("Set ETO to "+lETO);
+		wait=new WebDriverWait(original_driver, Duration.ofSeconds(lETO));
 		EventFiringDecorator<WebDriver> decorator=new EventFiringDecorator<WebDriver>(new SeleniumListener(extentTest));
 		driver = decorator.decorate(original_driver);
 	}

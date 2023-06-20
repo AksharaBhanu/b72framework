@@ -21,9 +21,10 @@
         <version>3.0.0</version>
         <configuration>
           <systemPropertyVariables>
+            <htmlpath>report/Spark.html</htmlpath>
            	<appurl>https://demo.actitime.com/login.do</appurl>
            	<grid>no</grid>
-           	<browser>chrome</browser>
+           	<pptfile>prod.properties</pptfile>
           </systemPropertyVariables>
           <suiteXmlFiles>
             <suiteXmlFile>testng.xml</suiteXmlFile>
